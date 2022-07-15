@@ -1,9 +1,7 @@
 package com.generation.blogpessoal.model;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +15,8 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name = "tb_usuarios")
 public class Usuario {
@@ -28,10 +28,12 @@ public class Usuario {
 	@NotNull(message = "O atributo nome é obrigatório")
 	private String nome;
 	
-	@NotNull(message = "O atributo usuário é obrigatório")
+	@Schema(example = "email@email.com.br")
+	@NotNull(message = "O atributo Usuário é Obrigatório!")
+	@Email(message = "O atributo Usuário deve ser um email válido!")
 	private String usuario;
 	
-	@NotNull(message = "O atributo senha é obrigatório")
+	@NotBlank(message = "O atributo senha é obrigatório")
 	@Size(min = 8, message = "O atributo senha deve ter no mínimo 8 caracteres")
 	private String senha;
 	
