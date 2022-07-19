@@ -23,11 +23,11 @@ public class Postagem {
 	private Long id;
 	
 	@NotNull
-	@Size (min = 5, max = 100)
+	@Size (min = 1, max = 100)
 	private String titulo;
 	
 	@NotNull
-	@Size (min = 10, max = 500)
+	@Size (min = 1, max = 1000)
 	private String texto;
 	
 	@UpdateTimestamp
