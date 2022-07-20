@@ -18,7 +18,7 @@ import com.generation.blogpessoal.repository.PostagemRepository;
 
 @RestController
 @RequestMapping ("/postagens")
-@CrossOrigin ("*")
+@CrossOrigin (origins = "*", allowedHeaders = "*")
 
 public class PostagemController {
 
@@ -26,16 +26,16 @@ public class PostagemController {
 	private PostagemRepository repository;
 	
 	@GetMapping ("/all")
-	public ResponseEntity<List<Postagem>> GetAll () {
+	public ResponseEntity<List<Postagem>> getAll () {
 		return ResponseEntity.ok(repository.findAll());
 	}
 	@GetMapping ("/{id}")
-	public ResponseEntity<Postagem> GetById(@PathVariable Long id){
+	public ResponseEntity<Postagem> getById(@PathVariable Long id){
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
-	@GetMapping ("/{titulo}")
-	public ResponseEntity<List<Postagem>> GetByTitulo (@PathVariable String titulo){
+	@GetMapping ("/titulo/{titulo}")
+	public ResponseEntity<List<Postagem>> getByTitulo (@PathVariable String titulo){
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));	
 	}
 	@PostMapping ("/novo")
